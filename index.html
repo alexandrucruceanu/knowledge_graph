@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Web App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1>Knowledge Graph Web App</h1>
+    <div id="graph-container">
+        <div id="graph"></div>
+    </div>
+
+    <div id="controls">
+        <h2>Add Node</h2>
+        <label for="nodeId">Node ID:</label>
+        <input type="text" id="nodeId" name="nodeId">
+        <button onclick="addNode()"><i class="fas fa-plus"></i> Add Node</button>
+
+        <h2>Add Edge</h2>
+        <label for="sourceNode">Source Node:</label>
+        <input type="text" id="sourceNode" name="sourceNode"><br><br>
+        <label for="targetNode">Target Node:</label>
+        <input type="text" id="targetNode" name="targetNode">
+        <button onclick="addEdge()"><i class="fas fa-link"></i> Add Edge</button>
+
+        <h2>Save/Load</h2>
+        <button onclick="saveGraph()"><i class="fas fa-save"></i> Save Graph</button>
+        <button onclick="loadGraph()"><i class="fas fa-upload"></i> Load Graph</button>
+
+        <h2>Theme</h2>
+        <button onclick="toggleTheme()"><i class="fas fa-adjust"></i> Toggle Theme</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.27.0/cytoscape.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
