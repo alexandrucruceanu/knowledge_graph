@@ -1,53 +1,137 @@
+.app-header {
+    background-color: #f0f0f0;
+    /* Light gray header background */
+    color: black;
+    /* Black header text color for contrast */
+    padding: 10px 20px;
+    text-align: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-theme .app-header {
+    background-color: #000000;
+    color: #dddddd;
+}
+
+.dark-theme .controls-panel {
+    background-color: #333333;
+}
+
+.dark-theme .cookie-banner {
+    background-color: #000000;
+    color: #dddddd;
+}
+
+.app-header h1 {
+    margin: 0;
+    /* Remove default margin for header h1 */
+}
+
+.app-header .toggle-controls {
+    position: relative;
+    /* Position toggle button relative to header */
+    top: auto;
+    /* Reset top and left for header positioning */
+    left: auto;
+}
+
+.toggle-controls {
+    position: absolute;
+    /* Position relative to controls-panel */
+    top: 10px;
+    left: 10px;
+    background: none;
+    color: #007bff;
+    border: none;
+    padding: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 100;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    background-color: #f0e6d2;
-    /* Light Mocha Mousse */
-    color: #333;
+    align-items: stretch;
+    background-color: #f0f2f5;
+    color: #000000;
+    justify-content: center;
     margin: 0;
     padding: 0;
 }
 
 #graph-container {
-    width: 70%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    /* Take full width */
+    height: calc(100vh - 70px);
+    /* Take remaining height below header (adjust 70px as needed) */
     padding: 20px;
+    order: 2;
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L2 2M13 1L12 2' stroke='%23cccccc' stroke-width='0.5' stroke-linecap='square'/%3E%3C/svg%3E");
+    display: flex;
+    /* Enable flexbox for centering graph */
+    justify-content: center;
+    /* Center graph horizontally */
+    align-items: center;
+    /* Center graph vertically */
 }
 
 #graph {
     width: 800px;
     height: 600px;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     border-radius: 10px;
 }
 
-#controls {
-    width: 30%;
+.controls-panel {
+    width: 25%;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    order: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.controls-panel.open {
+    transform: translateX(0);
+}
+
+#controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 input {
     padding: 8px;
     margin: 5px 0;
-    border: 1px solid #9e7a68;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     width: 200px;
 }
 
 button {
-    background-color: #9e7a68;
-    /* Mocha Mousse */
-    color: white;
+    background-color: none;
+    color: #007bff;
     border: none;
-    padding: 10px 20px;
+    padding: 5px;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -58,52 +142,85 @@ button {
 }
 
 button:hover {
-    background-color: #806254;
+    background-color: #0056b3;
 }
 
 .dark-theme {
-    background-color: #333;
-    color: #f0e6d2;
-    /* Light Mocha Mousse */
+    background-color: #000000;
+    color: #dddddd;
 }
 
 .dark-theme #graph {
     border: 1px solid #f0e6d2;
-    /* Light Mocha Mousse */
 }
 
 .dark-theme button {
-    background-color: #f0e6d2;
-    /* Light Mocha Mousse */
-    color: #333;
+    background-color: #9e7a68;
+    color: #dddddd;
 }
 
 .dark-theme button:hover {
-    background-color: #d1c0ac;
+    background-color: #5dade2;
 }
 
 .dark-theme input {
-    background-color: #444;
-    color: #f0e6d2;
+    background-color: #222222;
+    color: #ffffff;
     border-color: #f0e6d2;
+}
+
+.dark-theme .app-header h1,
+.dark-theme .app-header .toggle-controls {
+    color: #f0e6d2;
 }
 
 h1 {
     text-align: center;
-    color: #9e7a68;
+    color: #007bff;
     margin: 20px 0;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    transform: none;
 }
 
 h2 {
-    color: #9e7a68;
+    color: #007bff;
     margin: 20px 0 10px;
 }
 
 .dark-theme h1,
 .dark-theme h2 {
     color: #f0e6d2;
+}
+
+.dark-theme .toggle-controls {
+    color: #f0e6d2;
+}
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cookie-banner button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cookie-banner button:hover {
+    background-color: #0056b3;
 }

@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .style({
                     'background-color': '#f0e6d2',
                     'color': '#333',
-                    'border-color': '#f0e6d2'
+                    'border-color': '#dddddd'
                 })
                 .selector('edge')
                 .style({
@@ -161,4 +161,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         layout.run();
     }
+
+    const toggleControlsButton = document.getElementById('toggle-controls');
+    const controlsPanel = document.getElementById('controls-panel');
+
+    toggleControlsButton.addEventListener('click', function() {
+        controlsPanel.classList.toggle('open');
+    });
+
+    // Cookie banner logic
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAccepted = localStorage.getItem('cookieAccepted');
+
+    if (!cookieAccepted) {
+        cookieBanner.style.display = 'flex';
+    }
+
+    window.acceptCookies = function() {
+        localStorage.setItem('cookieAccepted', 'true');
+        cookieBanner.style.display = 'none';
+    };
+
+    window.rejectCookies = function() {
+        localStorage.setItem('cookieAccepted', 'false');
+        cookieBanner.style.display = 'none';
+    };
 });
